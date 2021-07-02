@@ -6,6 +6,7 @@
 from connect.eaas.extension import (
     Extension,
     ProcessingResponse,
+    ValidationResponse,
 )
 
 import random
@@ -13,6 +14,9 @@ import string
 
 
 class E2EExtension(Extension):
+
+    def validate_asset_purchase_request(self, request):
+        return ValidationResponse.done(request)
 
     def process_asset_purchase_request(self, request):
         request_id = request['id']
