@@ -6,6 +6,7 @@
 from connect.eaas.extension import (
     Extension,
     ProcessingResponse,
+    ValidationResponse,
 )
 
 import random
@@ -13,6 +14,14 @@ import string
 
 
 class E2EExtension(Extension):
+
+    def process_tier_config_setup_request(self, request):
+        self.logger.info(f"TCR Validation with id {request['id']}")
+        return ValidationResponse.done(request)
+
+    def validate_asset_purchase_request(self, request):
+        self.logger.info(f"RTV Validation with if {request['id']}")
+        return ValidationResponse.done(request)
 
     def process_asset_purchase_request(self, request):
         request_id = request['id']
