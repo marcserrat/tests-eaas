@@ -15,7 +15,7 @@ import string
 
 class E2EExtension(Extension):
 
-    def process_tier_config_setup_request(self, request):
+    def validate_tier_config_setup_request(self, request):
         self.logger.info(f"TCR Validation with id {request['id']}")
         return ValidationResponse.done(request)
 
